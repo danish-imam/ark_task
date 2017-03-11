@@ -15,14 +15,15 @@ int main()
     vector<Point> node;
     th1=50;
     th2=130;
-    Mat a=imread("hm2.jpg",1);
+    Mat a=imread("hm3.jpg",1);
     if( !a.data )
      return -1;
     Mat edge;
+    Mat a1=a.clone();
     cvtColor(a, a, CV_BGR2GRAY);
     blur( a, a, Size( 3, 3 ));
     Canny(a, edge, th1, th2, 3);
-    findContours(edge,contours,hierarchy,CV_RETR_TREE,CV_CHAIN_APPROX_SIMPLE);
+    findContours(edge,contours,hierarchy,CV_RETR_EXTERNAL,CV_CHAIN_APPROX_SIMPLE);
 
     vector<vector<Point> >hull(contours.size());
     for(int i=0;i<contours.size();i++)
@@ -39,6 +40,7 @@ int main()
             node.push_back(hull[i][j]);
         }
     }
+    imshow("Original Image", a1);
     imshow("edges",edge);
     imshow("hullconvex",draw);
     waitKey(0);
