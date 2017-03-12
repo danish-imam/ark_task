@@ -9,14 +9,6 @@ using namespace std;
 Mat a;
 int th1,th2;
 
-int isValid(int x,int y)
-{
-    if(x>a.rows || y>a.cols || x<0 || y<0)
-        return 0;
-    else
-        return 1;
-}
-
 int main()
 {
     vector<vector<Point> > contours;
